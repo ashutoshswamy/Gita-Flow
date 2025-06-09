@@ -1,102 +1,125 @@
-import Image from "next/image";
+import { Feather, Github, Linkedin, Twitter } from "lucide-react";
+import { AskKrishnaUI } from "@/components/gita-ai/ask-krishna-ui";
+import Link from "next/link";
+import CurrentYear from "@/components/current-year";
+import type { Metadata } from "next";
+
+// Replace with your actual production URL if deploying
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL || "https://gitaflow.vercel.app";
+
+export const metadata: Metadata = {
+  title: "Gita Flow - Ask Krishna for Wisdom from the Bhagavad Gita",
+  description:
+    "Engage with Gita Flow to ask questions and receive profound answers from Krishna, based on the timeless teachings of the Bhagavad Gita. Find peace, clarity, and spiritual guidance.",
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title: "Gita Flow - Ask Krishna for Wisdom from the Bhagavad Gita",
+    description:
+      "Engage with Gita Flow to ask questions and receive profound answers from Krishna, based on the timeless teachings of the Bhagavad Gita.",
+    url: siteUrl,
+    type: "website",
+    // images: [ // Optional: if you have a specific OG image for the home page
+    //   {
+    //     url: `${siteUrl}/og-home.png`,
+    //     width: 1200,
+    //     height: 630,
+    //     alt: 'Ask Krishna - Gita Flow Interface',
+    //   },
+    // ],
+  },
+  twitter: {
+    title: "Gita Flow - Ask Krishna for Wisdom from the Bhagavad Gita",
+    description:
+      "Engage with Gita Flow to ask questions and receive profound answers from Krishna, based on the timeless teachings of the Bhagavad Gita.",
+    // images: [`${siteUrl}/twitter-home.png`],
+  },
+};
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+    <div className="container mx-auto min-h-screen flex flex-col items-center justify-start py-10 sm:py-16 px-4">
+      <header className="mb-10 sm:mb-12 text-center">
+        <Feather
+          className="mx-auto h-14 w-14 sm:h-16 sm:w-16 text-primary opacity-75"
+          strokeWidth={1.5}
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+        <h1 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent dark:from-primary dark:to-secondary">
+          Gita Flow
+        </h1>
+        <p className="mt-2 text-lg sm:text-xl text-muted-foreground max-w-md mx-auto">
+          Seek wisdom and gentle guidance from the Bhagavad Gita.
+        </p>
+      </header>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+      <main className="w-full max-w-2xl">
+        <AskKrishnaUI />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="w-full mt-16 sm:mt-24 pt-8 pb-6 border-t border-border/30 bg-gradient-to-b from-muted/5 via-muted/10 to-muted/20 dark:from-muted/10 dark:via-muted/20 dark:to-muted/30 rounded-t-lg">
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div className="md:col-span-2 space-y-2">
+              <h3 className="text-lg font-semibold text-foreground">
+                Gita Flow
+              </h3>
+              <p className="text-sm text-muted-foreground">
+                Personalized spiritual guidance, powered by AI. Seek answers and
+                wisdom inspired by the Bhagavad Gita.
+              </p>
+              <Link
+                href="/disclaimer"
+                className="text-sm text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Read our disclaimer"
+              >
+                Disclaimer
+              </Link>
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg font-semibold text-foreground">
+                Connect with Developer
+              </h3>
+              <div className="flex space-x-3">
+                <Link
+                  href="https://github.com/ashutoshswamy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ashutosh Swamy on GitHub"
+                >
+                  <Github className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                </Link>
+                <Link
+                  href="https://linkedin.com/in/ashutoshswamy"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ashutosh Swamy on LinkedIn"
+                >
+                  <Linkedin className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                </Link>
+                <Link
+                  href="https://twitter.com/ashutoshswamy_"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Ashutosh Swamy on Twitter"
+                >
+                  <Twitter className="h-6 w-6 text-muted-foreground hover:text-primary transition-colors" />
+                </Link>
+              </div>
+              <p className="text-sm text-muted-foreground pt-1">
+                Ashutosh Swamy
+              </p>
+            </div>
+          </div>
+          <div className="border-t border-border/50 pt-6 text-center text-xs sm:text-sm text-muted-foreground">
+            <p>
+              &copy; <CurrentYear /> Gita Flow. All rights reserved. Inspired by
+              eternal truths.
+            </p>
+            <p className="mt-2">Made with ❤️</p>
+          </div>
+        </div>
       </footer>
     </div>
   );

@@ -1,26 +1,130 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+body {
+  font-family: var(--font-poppins), Arial, Helvetica, sans-serif; /* Use Poppins font */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: 40 100% 96%; /* Cream - Lighter for more spacious feel */
+    --foreground: 225 40% 25%; /* Indigo - Darker for better contrast */
+
+    --muted: 40 60% 90%; /* Lighter Cream/Beige for muted backgrounds */
+    --muted-foreground: 225 40% 40%; /* Slightly lighter Indigo for muted text */
+
+    --popover: 40 100% 98%; /* Off-white cream for popovers - very light */
+    --popover-foreground: 225 40% 25%; /* Indigo for popover text */
+
+    --card: 40 100% 98%; /* Off-white cream for cards - very light */
+    --card-foreground: 225 40% 25%; /* Indigo for card text */
+
+    --border: 40 50% 88%; /* Cream/Beige for borders */
+    --input: 40 100% 99%; /* Very light cream for input backgrounds, with a hint of border */
+
+    --primary: 225 50% 45%; /* A stronger Indigo for primary actions */
+    --primary-foreground: 0 0% 100%; /* White for text on primary */
+
+    --secondary: 45 80% 75%; /* Muted Gold for secondary elements */
+    --secondary-foreground: 225 40% 20%; /* Darker Indigo for text on secondary */
+
+    --accent: 16 100% 66%; /* Coral */
+    --accent-foreground: 0 0% 100%; /* White text on accent */
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 16 100% 66%; /* Coral for focus rings */
+    --radius: 0.5rem;
+
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    --sidebar-background: 225 30% 96%;
+    --sidebar-foreground: 225 40% 25%;
+    --sidebar-primary: 16 100% 66%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 40 100% 90%;
+    --sidebar-accent-foreground: 225 40% 30%;
+    --sidebar-border: 225 30% 85%;
+    --sidebar-ring: 16 100% 66%;
+  }
+
+  .dark {
+    --background: 225 30% 12%; /* Deep Indigo */
+    --foreground: 40 80% 90%; /* Pale Cream/Gold */
+
+    --muted: 225 30% 20%; /* Darker Indigo */
+    --muted-foreground: 40 70% 70%; /* Lighter Pale Cream/Gold */
+
+    --popover: 225 30% 8%; /* Very Dark Indigo */
+    --popover-foreground: 40 80% 90%;
+
+    --card: 225 30% 15%; /* Dark Indigo for cards */
+    --card-foreground: 40 80% 90%;
+
+    --border: 225 30% 25%;
+    --input: 225 30% 18%;
+
+    /* In dark mode, Primary becomes Coral, Accent becomes Gold for visual pop */
+    --primary: 16 100% 66%; /* Coral */
+    --primary-foreground: 225 30% 8%; /* Dark text on Coral */
+
+    --secondary: 45 70% 55%; /* Gold */
+    --secondary-foreground: 225 30% 12%; /* Deep Indigo text on Gold */
+
+    --accent: 45 80% 65%; /* Gold as accent */
+    --accent-foreground: 225 30% 8%; /* Dark text on Gold */
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 98%;
+
+    --ring: 16 100% 66%; /* Coral */
+
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --sidebar-background: 225 25% 10%;
+    --sidebar-foreground: 40 75% 85%;
+    --sidebar-primary: 16 100% 66%;
+    --sidebar-primary-foreground: 225 30% 8%;
+    --sidebar-accent: 225 25% 18%;
+    --sidebar-accent-foreground: 40 75% 85%;
+    --sidebar-border: 225 25% 15%;
+    --sidebar-ring: 16 100% 66%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply text-foreground;
+    /* Subtle gradient background, fixed means it doesn't scroll with content */
+    background: linear-gradient(
+        to bottom,
+        hsl(var(--background)) 0%,
+        hsl(var(--muted) / 30) 100%
+      )
+      fixed;
+    @apply min-h-screen; /* Ensure it covers full viewport height */
+  }
+
+  /* Ensure dark mode also gets its specific gradient if variables change significantly */
+  .dark body {
+    background: linear-gradient(
+        to bottom,
+        hsl(var(--background)) 0%,
+        hsl(var(--muted) / 30) 100%
+      )
+      fixed;
+  }
 }
