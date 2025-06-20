@@ -25,11 +25,11 @@ import {
 import { cn } from "@/lib/utils";
 
 const suggestedPromptsList = [
-  "What is the nature of the self (Atman)?",
-  "How can I find peace in a chaotic world?",
-  "What is the path to true happiness?",
-  "How should I deal with difficult relationships?",
-  "What is the significance of selfless action (Karma Yoga)?",
+  "What is the nature of the self?",
+  "How to find peace in chaos?",
+  "The path to true happiness?",
+  "Dealing with difficult relationships?",
+  "What is selfless action?",
 ];
 
 export function AskKrishnaUI() {
@@ -63,7 +63,6 @@ export function AskKrishnaUI() {
       const result = await askKrishna({ question });
       setResponse(result);
     } catch (e: any) {
-      // Added opening brace here
       console.error(e);
       setError(
         e.message ||
@@ -136,7 +135,7 @@ export function AskKrishnaUI() {
             Select a prompt to begin your inquiry.
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-4 sm:p-6 sm:pt-2 flex flex-wrap gap-2 bg-card">
+        <CardContent className="px-4 pb-4 sm:px-6 sm:pb-6 flex flex-wrap gap-2 bg-card">
           {suggestedPromptsList.map((prompt, index) => (
             <Button
               key={index}
