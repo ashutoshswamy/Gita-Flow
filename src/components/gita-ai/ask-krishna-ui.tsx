@@ -63,6 +63,7 @@ export function AskKrishnaUI() {
       const result = await askKrishna({ question });
       setResponse(result);
     } catch (e: any) {
+      // Added opening brace here
       console.error(e);
       setError(
         e.message ||
@@ -76,7 +77,7 @@ export function AskKrishnaUI() {
   return (
     <div className="space-y-8">
       <Card className="shadow-xl rounded-xl overflow-hidden">
-        <CardHeader className="p-6 bg-gradient-to-br from-primary to-accent text-primary-foreground dark:from-primary dark:to-secondary dark:text-primary-foreground">
+        <CardHeader className="p-4 sm:p-6 bg-gradient-to-br from-primary to-accent text-primary-foreground dark:from-primary dark:to-secondary dark:text-primary-foreground">
           <div className="flex items-center space-x-3">
             <Wand2 className="h-7 w-7 text-current" />
             <div>
@@ -90,7 +91,7 @@ export function AskKrishnaUI() {
             </div>
           </div>
         </CardHeader>
-        <CardContent className="p-6 bg-card">
+        <CardContent className="p-4 sm:p-6 bg-card">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
               <Label htmlFor="question" className="text-base font-medium">
@@ -124,7 +125,7 @@ export function AskKrishnaUI() {
       </Card>
 
       <Card className="shadow-lg rounded-xl overflow-hidden">
-        <CardHeader className="p-6 bg-gradient-to-br from-card to-muted/10 dark:from-card dark:to-muted/20">
+        <CardHeader className="p-4 sm:p-6 bg-gradient-to-br from-card to-muted/10 dark:from-card dark:to-muted/20">
           <div className="flex items-center space-x-3">
             <MessageCircleQuestion className="h-6 w-6 text-accent dark:text-primary" />
             <CardTitle className="text-lg sm:text-xl font-semibold">
@@ -135,7 +136,7 @@ export function AskKrishnaUI() {
             Select a prompt to begin your inquiry.
           </CardDescription>
         </CardHeader>
-        <CardContent className="p-6 pt-2 flex flex-wrap gap-2 bg-card">
+        <CardContent className="p-4 sm:p-6 sm:pt-2 flex flex-wrap gap-2 bg-card">
           {suggestedPromptsList.map((prompt, index) => (
             <Button
               key={index}
@@ -152,7 +153,7 @@ export function AskKrishnaUI() {
       </Card>
 
       {isLoading && (
-        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-primary/30 bg-gradient-to-br from-primary/10 via-muted/10 to-accent/10 p-8 text-center animate-pulse_custom_gita dark:border-primary/50 dark:from-primary/20 dark:via-muted/20 dark:to-accent/20">
+        <div className="flex flex-col items-center justify-center rounded-xl border border-dashed border-primary/30 bg-gradient-to-br from-primary/10 via-muted/10 to-accent/10 p-6 sm:p-8 text-center animate-pulse_custom_gita dark:border-primary/50 dark:from-primary/20 dark:via-muted/20 dark:to-accent/20">
           <Loader2 className="mr-3 h-10 w-10 animate-spin text-primary dark:text-primary" />
           <p className="mt-3 text-lg text-muted-foreground">
             Krishna is contemplating your question...
@@ -180,7 +181,7 @@ export function AskKrishnaUI() {
 
       {response && (
         <Card className="shadow-xl rounded-xl overflow-hidden">
-          <CardHeader className="p-6 bg-gradient-to-br from-accent to-secondary text-accent-foreground dark:from-accent dark:to-secondary dark:text-accent-foreground">
+          <CardHeader className="p-4 sm:p-6 bg-gradient-to-br from-accent to-secondary text-accent-foreground dark:from-accent dark:to-secondary dark:text-accent-foreground">
             <div className="flex items-center space-x-3">
               <Sparkles className="h-7 w-7 text-current" />
               <CardTitle className="text-xl sm:text-2xl font-semibold text-current">
@@ -188,7 +189,7 @@ export function AskKrishnaUI() {
               </CardTitle>
             </div>
           </CardHeader>
-          <CardContent className="p-6 text-base sm:text-lg leading-relaxed text-foreground bg-card">
+          <CardContent className="p-4 sm:p-6 text-base sm:text-lg leading-relaxed text-foreground bg-card">
             <ReactMarkdown
               components={{
                 p: ({ node, ...props }) => (
