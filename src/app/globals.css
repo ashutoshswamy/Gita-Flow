@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-poppins), Arial, Helvetica, sans-serif; /* Use Poppins font */
+  font-family: var(--font-space-grotesk), Arial, Helvetica, sans-serif; /* Use Space Grotesk font */
 }
 
 @layer base {

@@ -30,7 +30,7 @@ if (!API_KEY) {
 
 const genAI = new GoogleGenerativeAI(API_KEY);
 const model = genAI.getGenerativeModel({
-  model: "gemini-2.0-flash",
+  model: "gemini-2.5-flash",
   // For GITA AI, we want to allow most content, but block hate speech, harassment, and dangerous content.
   // Sexually explicit content should also be blocked as it's not relevant to spiritual guidance.
   safetySettings: [

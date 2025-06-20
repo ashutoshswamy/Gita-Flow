@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google"; // Import Poppins
+import { Space_Grotesk } from "next/font/google"; // Import Space Grotesk
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 
-// Configure Poppins
-const poppins = Poppins({
-  variable: "--font-poppins", // Define the CSS variable name
+// Configure Space Grotesk
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk", // Define the CSS variable name
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"], // Add desired weights
 });
 
 // Replace with your actual production URL when deploying
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://gita-flow.vercel.app";
+  process.env.NEXT_PUBLIC_SITE_URL || "https://gita-flow.example.com";
 
 export const metadata: Metadata = {
   // metadataBase: new URL(siteUrl), // Uncomment and set your production URL
@@ -71,8 +71,8 @@ export const metadata: Metadata = {
 
   icons: {
     icon: "/favicon.ico", // Ensure these files exist in your /public folder
-    shortcut: "/icon.png",
-    apple: "/apple-icon.png",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
   },
   manifest: "/site.webmanifest", // Ensure this file exists in your /public folder
 
@@ -103,9 +103,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Use Poppins font variable for the body class and add suppressHydrationWarning */}
+      {/* Use Space Grotesk font variable for the body class and add suppressHydrationWarning */}
       <body
-        className={`${poppins.variable} antialiased selection:bg-accent/20`}
+        className={`${spaceGrotesk.variable} antialiased selection:bg-accent/20`}
         suppressHydrationWarning
       >
         {children}
