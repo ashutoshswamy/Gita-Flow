@@ -1,3 +1,82 @@
+# 🕉️ Gita Flow
+
+Gita Flow is a spiritual guidance application where users can seek divine wisdom from Lord Krishna, inspired by the eternal teachings of the Bhagavad Gita. Share your problems, dilemmas, or questions, and receive compassionate, insightful guidance powered by AI.
+
+## ✨ Features
+
+- 🙏 Ask any life question or share your problems
+- 💫 Receive wisdom in the voice of Lord Krishna from the Mahabharata
+- 🎨 Beautiful, serene UI with gradient backgrounds
+- 🌓 Dark mode support
+- ⚡ Fast and responsive Next.js application
+- 🤖 Powered by Google's Gemini AI
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ installed
+- A Google Gemini API key (free tier available)
+
+### Installation
+
+1. Clone the repository:
+
+```bash
+git clone <your-repo-url>
+cd gita-flow
+```
+
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Get your Gemini API key:
+
+   - Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
+   - Create or sign in with your Google account
+   - Generate a new API key
+
+4. Create a `.env.local` file in the root directory:
+
+```bash
+GEMINI_API_KEY=your_api_key_here
+```
+
+5. Run the development server:
+
+```bash
+npm run dev
+```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+## 🛠️ Built With
+
+- [Next.js 15](https://nextjs.org/) - React Framework
+- [React 19](https://react.dev/) - UI Library
+- [Tailwind CSS](https://tailwindcss.com/) - Styling
+- [Google Gemini AI](https://ai.google.dev/) - AI-powered wisdom
+- TypeScript - Type Safety
+
+## 📝 Usage
+
+1. Visit the application
+2. Type your question, problem, or dilemma in the text area
+3. Click "Seek Krishna's Wisdom"
+4. Receive divine guidance inspired by the Bhagavad Gita
+
+## 🎯 Example Questions
+
+- "I'm confused about my career path. What should I do?"
+- "How can I deal with difficult people at work?"
+- "I'm feeling anxious about the future. How do I find peace?"
+- "What is the meaning of true success?"
+
+## 📄 License
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

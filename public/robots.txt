@@ -1,0 +1,13 @@
+# Allow all crawlers
+User-agent: *
+Allow: /
+
+# Crawl-delay
+Crawl-delay: 0
+
+# Sitemap location
+Sitemap: https://gita-flow.vercel.app/sitemap.xml
+
+# Disallow API routes from being indexed
+User-agent: *
+Disallow: /api/
