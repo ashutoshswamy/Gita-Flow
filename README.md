@@ -130,9 +130,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **Ashutosh Swamy**
 
 - GitHub: [@ashutoshswamy](https://github.com/ashutoshswamy)
-- Portfolio: [Your Portfolio Link]
-- LinkedIn: [Your LinkedIn Profile]
-- Email: [Your Email]
+- LinkedIn: [@ashutoshswamy](https://linkedin.com/in/ashutoshswamy)
+- Email: ashutoshswamy397@gmail.com
 
 ### About the Developer
 
@@ -142,12 +141,6 @@ Ashutosh Swamy is a passionate developer who believes in the power of technology
 
 - **GitHub Issues**: For bug reports and feature requests
 - **Email**: ashutoshswamy397@gmail.com for general inquiries
-
-## © Copyright
-
-Copyright (c) 2025 Gita Flow. All rights reserved.
-
-This project is created with reverence for the sacred teachings of the Bhagavad Gita and Lord Krishna. The spiritual content and interpretations are meant for educational and inspirational purposes.
 
 ---
 
