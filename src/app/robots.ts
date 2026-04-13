@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/"],
       },
     ],
-    sitemap: "https://gita-flow.vercel.app/sitemap.xml",
+    sitemap: "https://gitaflow.ashutoshswamy.in/sitemap.xml",
   };
 }

@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
+
+const outfit = Outfit({
+  variable: "--font-outfit",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://gita-flow.vercel.app"),
+  metadataBase: new URL("https://gitaflow.ashutoshswamy.in"),
   title: {
     default: "Gita Flow - AI-Powered Spiritual Wisdom from Bhagavad Gita",
     template: "%s | Gita Flow",
@@ -43,7 +50,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://gita-flow.vercel.app",
+    url: "https://gitaflow.ashutoshswamy.in",
     siteName: "Gita Flow",
     title: "Gita Flow - AI-Powered Spiritual Wisdom from Bhagavad Gita",
     description:
@@ -98,10 +105,10 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   verification: {
-    google: "google-site-verification-code", // Add your verification code after setting up Google Search Console
+    google: "google-site-verification-code",
   },
   alternates: {
-    canonical: "https://gita-flow.vercel.app",
+    canonical: "https://gitaflow.ashutoshswamy.in",
   },
 };
 
@@ -113,9 +120,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="canonical" href="https://gita-flow.vercel.app" />
+        <link rel="canonical" href="https://gitaflow.ashutoshswamy.in" />
       </head>
-      <body className={`${spaceGrotesk.variable} antialiased`}>{children}</body>
+      <body
+        className={`${cormorant.variable} ${outfit.variable} antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

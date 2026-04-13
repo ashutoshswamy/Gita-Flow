@@ -6,8 +6,8 @@ export default function jsonLd() {
     applicationCategory: "LifestyleApplication",
     description:
       "Seek divine wisdom from Lord Krishna through AI. Get personalized spiritual guidance inspired by the Bhagavad Gita.",
-    url: "https://gita-flow.vercel.app",
-    image: "https://gita-flow.vercel.app/og-image.png",
+    url: "https://gitaflow.ashutoshswamy.in",
+    image: "https://gitaflow.ashutoshswamy.in/og-image.png",
     author: {
       "@type": "Organization",
       name: "Gita Flow",

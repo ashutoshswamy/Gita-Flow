@@ -6,7 +6,7 @@ Allow: /
 Crawl-delay: 0
 
 # Sitemap location
-Sitemap: https://gita-flow.vercel.app/sitemap.xml
+Sitemap: https://gitaflow.ashutoshswamy.in/sitemap.xml
 
 # Disallow API routes from being indexed
 User-agent: *

@@ -1,82 +1,248 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Sacred palette — Light mode */
+  --bg-primary: #faf6ef;
+  --bg-secondary: #f5efe3;
+  --bg-card: #fffcf7;
+  --text-primary: #1a1a2e;
+  --text-secondary: #4a4a5e;
+  --text-muted: #7a7a8e;
+  --accent-gold: #c9a227;
+  --accent-gold-light: #e8d48b;
+  --accent-gold-dim: #a88520;
+  --accent-saffron: #e8941a;
+  --accent-terracotta: #c17b4a;
+  --accent-indigo: #2d2b55;
+  --accent-crimson: #8b2500;
+  --border-light: #e8dcc8;
+  --border-medium: #d4c5a9;
+  --shadow-warm: rgba(201, 162, 39, 0.08);
+  --glow-gold: rgba(201, 162, 39, 0.15);
 
-  /* Optimized spacing scale for all devices */
-  --spacing-xs: 0.25rem;
-  --spacing-sm: 0.5rem;
-  --spacing-md: 1rem;
-  --spacing-lg: 1.5rem;
-  --spacing-xl: 2rem;
-  --spacing-2xl: 3rem;
-
-  /* Touch target sizes (minimum 44x44px for mobile) */
+  /* Touch target sizes */
   --touch-target-min: 44px;
-
-  /* Responsive font sizes */
-  --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
-  --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
-  --font-size-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-  --font-size-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);
-  --font-size-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);
-  --font-size-2xl: clamp(1.5rem, 1.3rem + 1vw, 2rem);
-  --font-size-3xl: clamp(2rem, 1.6rem + 2vw, 3rem);
-  --font-size-4xl: clamp(2.5rem, 2rem + 2.5vw, 4rem);
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-space-grotesk);
-
-  /* Custom breakpoint for extra small devices */
-  --breakpoint-xs: 475px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg-primary: #0d0d1a;
+    --bg-secondary: #141428;
+    --bg-card: #1a1a30;
+    --text-primary: #f0e8d8;
+    --text-secondary: #c0b8a8;
+    --text-muted: #8a8298;
+    --accent-gold: #d4ad2e;
+    --accent-gold-light: #f0d060;
+    --accent-gold-dim: #b8952a;
+    --accent-saffron: #f0a030;
+    --accent-terracotta: #d08850;
+    --accent-indigo: #9898d0;
+    --accent-crimson: #d05040;
+    --border-light: #2a2a44;
+    --border-medium: #3a3a55;
+    --shadow-warm: rgba(201, 162, 39, 0.05);
+    --glow-gold: rgba(212, 173, 46, 0.1);
   }
 }
 
-/* Base body styles with performance optimizations */
+@theme inline {
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
+  --font-serif: var(--font-cormorant);
+  --font-sans: var(--font-outfit);
+  --breakpoint-xs: 475px;
+}
+
+/* ── Base ─────────────────────────────────────── */
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-space-grotesk), system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-
-  /* Prevent horizontal scroll on mobile */
   overflow-x: hidden;
-
-  /* Smooth scrolling for all devices */
   scroll-behavior: smooth;
 }
 
-/* Optimize touch interactions for mobile */
-@media (hover: none) and (pointer: coarse) {
-  * {
-    -webkit-tap-highlight-color: rgba(16, 185, 129, 0.1);
-  }
+/* ── Noise texture overlay ────────────────────── */
+
+.noise-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* Improve focus visibility for keyboard navigation */
+/* ── Mandala spinner ──────────────────────────── */
+
+@keyframes mandala-rotate {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes mandala-rotate-reverse {
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes typewriter-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px var(--glow-gold); }
+  50% { box-shadow: 0 0 40px var(--glow-gold), 0 0 60px var(--shadow-warm); }
+}
+
+@keyframes particle-float {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateY(-100vh) translateX(20px) scale(0); opacity: 0; }
+}
+
+.mandala-spin {
+  animation: mandala-rotate 60s linear infinite;
+}
+
+.mandala-spin-reverse {
+  animation: mandala-rotate-reverse 90s linear infinite;
+}
+
+.float-gentle {
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+/* ── Particle system ──────────────────────────── */
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--accent-gold);
+  animation: particle-float linear infinite;
+  pointer-events: none;
+}
+
+/* ── Sacred border ornament ───────────────────── */
+
+.sacred-border {
+  position: relative;
+}
+
+.sacred-border::before,
+.sacred-border::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--accent-gold) 20%,
+    var(--accent-gold) 80%,
+    transparent
+  );
+}
+
+.sacred-border::before { top: 0; }
+.sacred-border::after { bottom: 0; }
+
+/* ── Gold gradient text ───────────────────────── */
+
+.text-gold-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--accent-gold-dim),
+    var(--accent-gold),
+    var(--accent-gold-light),
+    var(--accent-gold)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ── Ornate divider ───────────────────────────── */
+
+.ornate-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ornate-divider::before,
+.ornate-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--border-medium),
+    transparent
+  );
+}
+
+/* ── Touch / Focus / Motion ──────────────────── */
+
+@media (hover: none) and (pointer: coarse) {
+  * { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.1); }
+}
+
 *:focus-visible {
-  outline: 2px solid #10b981;
+  outline: 2px solid var(--accent-gold);
   outline-offset: 2px;
   border-radius: 0.25rem;
 }
 
-/* Optimize animations for reduced motion preference */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -84,46 +250,23 @@ body {
   }
 }
 
-/* Responsive images and media */
-img,
-picture,
-video,
-canvas,
-svg {
+img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
   height: auto;
 }
 
-/* Better text wrapping */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+p, h1, h2, h3, h4, h5, h6 {
   overflow-wrap: break-word;
   hyphens: auto;
 }
 
-/* Optimize for mobile devices */
 @media (max-width: 640px) {
-  body {
-    font-size: 16px; /* Prevent zoom on iOS */
-  }
+  body { font-size: 16px; }
 }
-
-/* Optimize for tablets */
 @media (min-width: 641px) and (max-width: 1024px) {
-  body {
-    font-size: 17px;
-  }
+  body { font-size: 17px; }
 }
-
-/* Optimize for desktop */
 @media (min-width: 1025px) {
-  body {
-    font-size: 18px;
-  }
+  body { font-size: 18px; }
 }
