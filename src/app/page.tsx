@@ -371,6 +371,15 @@ export default function Home() {
               Arjuna faltered on the battlefield and asked. Krishna answered.
               Bring what troubles you, and receive the same counsel.
             </p>
+
+            <blockquote className="mt-6 max-w-md mx-auto relative z-10">
+              <p className="italic text-sm sm:text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
+                &ldquo;Whenever dharma declines and adharma rises, I manifest myself.&rdquo;
+              </p>
+              <span className="block mt-2 font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--verse)" }}>
+                Bhagavad Gita 4.7
+              </span>
+            </blockquote>
           </header>
 
           {/* ── Body: question column + marginalia ─ */}
@@ -433,9 +442,26 @@ export default function Home() {
                         <p className="text-lg font-semibold mb-1" style={{ color: "var(--ink)" }}>
                           What troubles you, dear seeker?
                         </p>
-                        <p className="font-sans text-sm" style={{ color: "var(--ink-faint)" }}>
+                        <p className="font-sans text-sm mb-6" style={{ color: "var(--ink-faint)" }}>
                           Share your problem, dilemma, or question — Krishna is listening.
                         </p>
+                        <div className="flex flex-wrap justify-center gap-2 px-2">
+                          {GLOSSES.map((g) => (
+                            <button
+                              key={g.label}
+                              type="button"
+                              onClick={() => handleGloss(g.prompt)}
+                              className="px-3.5 py-1.5 rounded-full font-sans text-xs sm:text-sm italic transition-colors duration-200"
+                              style={{
+                                background: "var(--bg-panel-raised)",
+                                color: "var(--ink-dim)",
+                                border: "1px solid var(--rule)",
+                              }}
+                            >
+                              {g.label}
+                            </button>
+                          ))}
+                        </div>
                       </div>
                     )}
 
@@ -649,40 +675,6 @@ export default function Home() {
                 </div>
               )}
 
-              {user && (
-                <>
-                  <p className="font-mono text-[10px] tracking-[0.25em] uppercase mb-4" style={{ color: "var(--ink-faint)" }}>
-                    Gloss
-                  </p>
-                  <ul className="space-y-1 mb-8">
-                    {GLOSSES.map((g) => (
-                      <li key={g.label}>
-                        <button
-                          type="button"
-                          onClick={() => handleGloss(g.prompt)}
-                          className="gloss-item w-full text-left pl-4 py-2 rounded-r-md"
-                        >
-                          <span className="block italic text-sm" style={{ color: "var(--ink)" }}>
-                            {g.label}
-                          </span>
-                          <span className="block font-sans text-xs mt-0.5 leading-snug" style={{ color: "var(--ink-faint)" }}>
-                            {g.prompt}
-                          </span>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              )}
-
-              <blockquote className="pl-4 border-l" style={{ borderColor: "var(--flame-dim)" }}>
-                <p className="italic text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
-                  &ldquo;Whenever dharma declines and adharma rises, I manifest myself.&rdquo;
-                </p>
-                <span className="block mt-2 font-mono text-[10px] tracking-[0.2em] uppercase" style={{ color: "var(--verse)" }}>
-                  Bhagavad Gita 4.7
-                </span>
-              </blockquote>
             </aside>
           </div>
         </main>

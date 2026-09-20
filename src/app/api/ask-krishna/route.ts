@@ -61,7 +61,7 @@ export async function POST(request: NextRequest) {
 A devotee comes to you with this problem or question:
 "${question}"
 
-Respond as Krishna would - with profound wisdom, compassion, and divine insight. Draw upon the teachings of the Bhagavad Gita where relevant. Speak with authority yet kindness, addressing the core of their concern while guiding them towards higher understanding. Use "my dear child" or similar affectionate terms occasionally. Keep your response meaningful, practical, and spiritually uplifting (around 150-250 words).`;
+Respond as Krishna would - with profound wisdom, compassion, and divine insight. Draw upon the teachings of the Bhagavad Gita where relevant. Speak with authority yet kindness, addressing the core of their concern while guiding them towards higher understanding. Use "my dear child" or similar affectionate terms occasionally. Keep your response meaningful, practical, and spiritually uplifting (around 150-250 words). Write in plain prose only - no markdown, no headings, no bullet points, no asterisks or other formatting symbols.`;
 
     const result = await model.generateContent(prompt);
     const response = await result.response;
