@@ -649,27 +649,31 @@ export default function Home() {
                 </div>
               )}
 
-              <p className="font-mono text-[10px] tracking-[0.25em] uppercase mb-4" style={{ color: "var(--ink-faint)" }}>
-                Gloss
-              </p>
-              <ul className="space-y-1 mb-8">
-                {GLOSSES.map((g) => (
-                  <li key={g.label}>
-                    <button
-                      type="button"
-                      onClick={() => handleGloss(g.prompt)}
-                      className="gloss-item w-full text-left pl-4 py-2 rounded-r-md"
-                    >
-                      <span className="block italic text-sm" style={{ color: "var(--ink)" }}>
-                        {g.label}
-                      </span>
-                      <span className="block font-sans text-xs mt-0.5 leading-snug" style={{ color: "var(--ink-faint)" }}>
-                        {g.prompt}
-                      </span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
+              {user && (
+                <>
+                  <p className="font-mono text-[10px] tracking-[0.25em] uppercase mb-4" style={{ color: "var(--ink-faint)" }}>
+                    Gloss
+                  </p>
+                  <ul className="space-y-1 mb-8">
+                    {GLOSSES.map((g) => (
+                      <li key={g.label}>
+                        <button
+                          type="button"
+                          onClick={() => handleGloss(g.prompt)}
+                          className="gloss-item w-full text-left pl-4 py-2 rounded-r-md"
+                        >
+                          <span className="block italic text-sm" style={{ color: "var(--ink)" }}>
+                            {g.label}
+                          </span>
+                          <span className="block font-sans text-xs mt-0.5 leading-snug" style={{ color: "var(--ink-faint)" }}>
+                            {g.prompt}
+                          </span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
 
               <blockquote className="pl-4 border-l" style={{ borderColor: "var(--flame-dim)" }}>
                 <p className="italic text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
