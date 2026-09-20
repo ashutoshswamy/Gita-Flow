@@ -178,7 +178,7 @@ export default function Home() {
   }, [user, activeChatId]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    bottomRef.current?.scrollIntoView({ behavior: "auto", block: "end" });
   }, [messages, typingText]);
 
   const animateMessage = (id: string, fullText: string) => {
