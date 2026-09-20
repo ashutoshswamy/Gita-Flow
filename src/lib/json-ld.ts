@@ -21,11 +21,6 @@ export default function jsonLd() {
       price: "0",
       priceCurrency: "USD",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      ratingCount: "1",
-    },
     audience: {
       "@type": "Audience",
       audienceType: "Spiritual seekers, people seeking life guidance",

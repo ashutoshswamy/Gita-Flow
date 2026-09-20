@@ -1,65 +1,49 @@
 @import "tailwindcss";
 
 :root {
-  /* Sacred palette — Light mode */
-  --bg-primary: #faf6ef;
-  --bg-secondary: #f5efe3;
-  --bg-card: #fffcf7;
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a4a5e;
-  --text-muted: #7a7a8e;
-  --accent-gold: #c9a227;
-  --accent-gold-light: #e8d48b;
-  --accent-gold-dim: #a88520;
-  --accent-saffron: #e8941a;
-  --accent-terracotta: #c17b4a;
-  --accent-indigo: #2d2b55;
-  --accent-crimson: #8b2500;
-  --border-light: #e8dcc8;
-  --border-medium: #d4c5a9;
-  --shadow-warm: rgba(201, 162, 39, 0.08);
-  --glow-gold: rgba(201, 162, 39, 0.15);
+  /* Kurukshetra at dusk — indigo sky, one brass lamp, no black void */
+  --bg: #171334;
+  --bg-panel: #1f1a42;
+  --bg-panel-raised: #29224f;
+  --ink: #ece7d8;
+  --ink-dim: #b3a8d1;
+  --ink-faint: #6b6291;
+  --flame: #e2932f;
+  --flame-bright: #f3b968;
+  --flame-dim: #a9793c;
+  --rule: #2f2a5c;
+  --rule-bright: #453c7e;
+  --verse: #c4432c;
+  --danger: #e2604f;
+  --glow: rgba(226, 147, 47, 0.18);
+  --glow-soft: rgba(226, 147, 47, 0.09);
 
-  /* Touch target sizes */
+  /* Palm-leaf page — the one place the UI turns to parchment */
+  --leaf-bg: #ede2c2;
+  --leaf-bg-raised: #e4d6ac;
+  --leaf-ink: #2b2013;
+  --leaf-ink-dim: #5c4d33;
+  --leaf-fiber: rgba(43, 32, 19, 0.07);
+  --leaf-cord: #a9793c;
+
   --touch-target-min: 44px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-primary: #0d0d1a;
-    --bg-secondary: #141428;
-    --bg-card: #1a1a30;
-    --text-primary: #f0e8d8;
-    --text-secondary: #c0b8a8;
-    --text-muted: #8a8298;
-    --accent-gold: #d4ad2e;
-    --accent-gold-light: #f0d060;
-    --accent-gold-dim: #b8952a;
-    --accent-saffron: #f0a030;
-    --accent-terracotta: #d08850;
-    --accent-indigo: #9898d0;
-    --accent-crimson: #d05040;
-    --border-light: #2a2a44;
-    --border-medium: #3a3a55;
-    --shadow-warm: rgba(201, 162, 39, 0.05);
-    --glow-gold: rgba(212, 173, 46, 0.1);
-  }
-}
-
 @theme inline {
-  --color-background: var(--bg-primary);
-  --color-foreground: var(--text-primary);
-  --font-serif: var(--font-cormorant);
-  --font-sans: var(--font-outfit);
+  --color-background: var(--bg);
+  --color-foreground: var(--ink);
+  --font-display: var(--font-dm-sans);
+  --font-sans: var(--font-dm-sans);
+  --font-mono: var(--font-mono);
   --breakpoint-xs: 475px;
 }
 
 /* ── Base ─────────────────────────────────────── */
 
 body {
-  background: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: var(--font-outfit), system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-dm-sans), system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -67,7 +51,7 @@ body {
   scroll-behavior: smooth;
 }
 
-/* ── Noise texture overlay ────────────────────── */
+/* ── Grain ────────────────────────────────────── */
 
 .noise-overlay::before {
   content: "";
@@ -75,24 +59,59 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 50;
-  opacity: 0.03;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-/* ── Mandala spinner ──────────────────────────── */
+/* ── The lamp ─────────────────────────────────── */
 
-@keyframes mandala-rotate {
-  to { transform: rotate(360deg); }
+@keyframes flame-flicker {
+  0%, 100% { transform: scaleY(1) scaleX(1) rotate(0deg); opacity: 1; }
+  20% { transform: scaleY(1.08) scaleX(0.94) rotate(-1.5deg); opacity: 0.9; }
+  45% { transform: scaleY(0.93) scaleX(1.06) rotate(1deg); opacity: 1; }
+  70% { transform: scaleY(1.05) scaleX(0.97) rotate(-0.5deg); opacity: 0.94; }
+  85% { transform: scaleY(0.97) scaleX(1.02) rotate(0.8deg); opacity: 0.98; }
 }
 
-@keyframes mandala-rotate-reverse {
-  to { transform: rotate(-360deg); }
+.flame {
+  animation: flame-flicker 2.6s ease-in-out infinite;
+  transform-origin: 50% 100%;
 }
 
-@keyframes float-gentle {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.flame-active {
+  animation-duration: 0.85s;
 }
+
+@keyframes lamp-glow-pulse {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.lamp-glow {
+  animation: lamp-glow-pulse 2.6s ease-in-out infinite;
+}
+
+.lamp-glow-active {
+  animation-duration: 0.85s;
+}
+
+/* ── Embers rising from the lamp ──────────────── */
+
+@keyframes ember-rise {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
+  15% { opacity: 0.9; }
+  100% { transform: translateY(-140px) translateX(var(--drift, 10px)) scale(0.2); opacity: 0; }
+}
+
+.ember {
+  position: absolute;
+  border-radius: 50%;
+  background: var(--flame);
+  animation: ember-rise ease-out infinite;
+  pointer-events: none;
+}
+
+/* ── Motion ───────────────────────────────────── */
 
 @keyframes fade-in-up {
   from { opacity: 0; transform: translateY(16px); }
@@ -114,30 +133,6 @@ body {
   50% { opacity: 0; }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px var(--glow-gold); }
-  50% { box-shadow: 0 0 40px var(--glow-gold), 0 0 60px var(--shadow-warm); }
-}
-
-@keyframes particle-float {
-  0% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateY(-100vh) translateX(20px) scale(0); opacity: 0; }
-}
-
-.mandala-spin {
-  animation: mandala-rotate 60s linear infinite;
-}
-
-.mandala-spin-reverse {
-  animation: mandala-rotate-reverse 90s linear infinite;
-}
-
-.float-gentle {
-  animation: float-gentle 6s ease-in-out infinite;
-}
-
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out both;
 }
@@ -151,92 +146,145 @@ body {
   animation: shimmer 3s ease-in-out infinite;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
+/* ── Flame gradient text ──────────────────────── */
 
-/* ── Particle system ──────────────────────────── */
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  border-radius: 50%;
-  background: var(--accent-gold);
-  animation: particle-float linear infinite;
-  pointer-events: none;
-}
-
-/* ── Sacred border ornament ───────────────────── */
-
-.sacred-border {
-  position: relative;
-}
-
-.sacred-border::before,
-.sacred-border::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60%;
-  height: 1px;
+.text-flame-gradient {
   background: linear-gradient(
-    90deg,
-    transparent,
-    var(--accent-gold) 20%,
-    var(--accent-gold) 80%,
-    transparent
-  );
-}
-
-.sacred-border::before { top: 0; }
-.sacred-border::after { bottom: 0; }
-
-/* ── Gold gradient text ───────────────────────── */
-
-.text-gold-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--accent-gold-dim),
-    var(--accent-gold),
-    var(--accent-gold-light),
-    var(--accent-gold)
+    120deg,
+    var(--flame-dim),
+    var(--flame-bright),
+    var(--flame)
   );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-/* ── Ornate divider ───────────────────────────── */
+/* ── Answer: palm-leaf page ────────────────────── */
 
-.ornate-divider {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
+.answer-leaf {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      var(--leaf-fiber) 0px,
+      var(--leaf-fiber) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    var(--leaf-bg);
+  color: var(--leaf-ink);
 }
 
-.ornate-divider::before,
-.ornate-divider::after {
+.leaf-stitch {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  pointer-events: none;
+}
+
+.leaf-stitch::before {
   content: "";
-  flex: 1;
-  height: 1px;
+  position: absolute;
+  left: 13px;
+  top: 8%;
+  bottom: 8%;
+  width: 1px;
+  background: var(--leaf-cord);
+  opacity: 0.55;
+}
+
+.leaf-stitch-hole {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--leaf-cord);
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Chat bubbles ──────────────────────────────── */
+
+.leaf-bubble {
+  background:
+    repeating-linear-gradient(
+      180deg,
+      var(--leaf-fiber) 0px,
+      var(--leaf-fiber) 1px,
+      transparent 1px,
+      transparent 5px
+    ),
+    var(--leaf-bg);
+  color: var(--leaf-ink);
+  border-left: 3px solid var(--leaf-cord);
+}
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+
+.typing-dot {
+  animation: bounce-dot 1.2s ease-in-out infinite;
+}
+
+/* ── Marginalia (manuscript gloss column) ─────── */
+
+.marginalia-rule {
   background: linear-gradient(
-    90deg,
+    180deg,
     transparent,
-    var(--border-medium),
+    var(--rule-bright) 15%,
+    var(--rule-bright) 85%,
     transparent
   );
+}
+
+.gloss-item {
+  position: relative;
+  border-left: 1px solid var(--rule);
+  transition: border-color 0.2s ease, background 0.2s ease, padding-left 0.2s ease;
+}
+
+.gloss-item::before {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 0.9rem;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--verse);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.gloss-item:hover,
+.gloss-item:focus-visible {
+  border-left-color: var(--flame);
+  background: var(--glow-soft);
+  padding-left: 1.1rem;
+}
+
+.gloss-item:hover::before,
+.gloss-item:focus-visible::before {
+  opacity: 1;
 }
 
 /* ── Touch / Focus / Motion ──────────────────── */
 
 @media (hover: none) and (pointer: coarse) {
-  * { -webkit-tap-highlight-color: rgba(201, 162, 39, 0.1); }
+  * { -webkit-tap-highlight-color: rgba(240, 160, 75, 0.12); }
 }
 
 *:focus-visible {
-  outline: 2px solid var(--accent-gold);
+  outline: 2px solid var(--flame);
   outline-offset: 2px;
   border-radius: 0.25rem;
 }

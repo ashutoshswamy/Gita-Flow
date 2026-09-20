@@ -1,18 +1,20 @@
-import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import { AuthProvider } from "@/contexts/AuthContext";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const outfit = Outfit({
-  variable: "--font-outfit",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500"],
   display: "swap",
 });
 
@@ -104,12 +106,13 @@ export const metadata: Metadata = {
     ],
   },
   manifest: "/manifest.json",
-  verification: {
-    google: "google-site-verification-code",
-  },
   alternates: {
     canonical: "https://gitaflow.ashutoshswamy.in",
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#171334",
 };
 
 export default function RootLayout({
@@ -123,9 +126,9 @@ export default function RootLayout({
         <link rel="canonical" href="https://gitaflow.ashutoshswamy.in" />
       </head>
       <body
-        className={`${cormorant.variable} ${outfit.variable} antialiased`}
+        className={`${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
       >
-        {children}
+        <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
   );

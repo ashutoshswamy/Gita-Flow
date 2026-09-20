@@ -4,12 +4,16 @@ A spiritual AI application that allows users to seek wisdom and guidance from Lo
 
 ## ✨ Features
 
-- **Divine Wisdom**: Ask questions and receive guidance as if speaking directly with Lord Krishna
-- **AI-Powered Responses**: Utilizes Google's Gemini 2.5 Flash model for intelligent, contextual answers
+- **Divine Wisdom**: Ask questions and receive guidance as if speaking directly with Lord Krishna, in a chat-style conversation
+- **AI-Powered Responses**: Utilizes Google's Gemini AI for intelligent, contextual answers
 - **Spiritual Context**: All responses are grounded in the teachings and philosophy of the Bhagavad Gita
+- **Google Sign-In**: Firebase Authentication gates chat access; every question and answer is saved to your account
+- **Multiple Named Chats**: Start new chats, rename them, and delete them — like any modern chat app
+- **Persistent History**: Conversations are stored in a Neon Postgres database and reload automatically on sign-in
 - **Modern UI**: Clean, responsive interface built with React and Tailwind CSS
-- **Fast Performance**: Built with Next.js 15 and Turbopack for optimal speed
-- **SEO Optimized**: Includes structured data and metadata for better search visibility
+- **Fast Performance**: Built with Next.js and Turbopack for optimal speed
+- **SEO Optimized**: Server-rendered content, structured data (JSON-LD), sitemap, robots.txt, and Open Graph metadata
+- **Rate Limited**: Server-side request limits protect against abuse of the AI and database
 - **Legal Pages**: Comprehensive privacy policy, terms of service, and disclaimer
 
 ## 🤝 Contributing
@@ -39,25 +43,33 @@ We welcome contributions from developers who want to help spread spiritual wisdo
 
 4. **Set up environment variables**
 
-   ```bash
-   cp .env.example .env.local
-   # Add your GEMINI_API_KEY
-   ```
+   Create `.env.local` in the project root with:
 
-5. **Create a feature branch**
+   - `GEMINI_API_KEY` — Google AI Studio API key
+   - `NEXT_PUBLIC_FIREBASE_*` — Firebase client config (Firebase Console → Project settings → General)
+   - `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` — Firebase Admin service account (Project settings → Service accounts → Generate new private key)
+   - `DATABASE_URL` — Neon Postgres connection string (Neon dashboard → Connection Details)
+
+   In the Firebase Console, enable **Google** as a sign-in provider under Authentication → Sign-in method.
+
+5. **Set up the database**
+
+   Run [`db/schema.sql`](db/schema.sql) against your Neon database (via the Neon SQL editor, or `psql $DATABASE_URL -f db/schema.sql`) to create the `chats` and `conversations` tables.
+
+6. **Create a feature branch**
 
    ```bash
    git checkout -b feature/your-feature-name
    ```
 
-6. **Make your changes and commit**
+7. **Make your changes and commit**
 
    ```bash
    git add .
    git commit -m "Add: your feature description"
    ```
 
-7. **Push to your fork and create a Pull Request**
+8. **Push to your fork and create a Pull Request**
    ```bash
    git push origin feature/your-feature-name
    ```
@@ -130,7 +142,9 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 **Ashutosh Swamy**
 
 - GitHub: [@ashutoshswamy](https://github.com/ashutoshswamy)
+- X: [@ashutoshswamy_](https://x.com/ashutoshswamy_)
 - LinkedIn: [@ashutoshswamy](https://linkedin.com/in/ashutoshswamy)
+- Portfolio: [ashutoshswamy.in](https://ashutoshswamy.in)
 - Email: ashutoshswamy397@gmail.com
 
 ### About the Developer
