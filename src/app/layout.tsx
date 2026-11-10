@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Bricolage_Grotesque, Noto_Sans_Devanagari } from "next/font/google";
+import { DM_Sans, Bricolage_Grotesque } from "next/font/google";
 import jsonLd from "@/lib/json-ld";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const geist = Geist({
-  variable: "--font-geist",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -13,12 +13,6 @@ const geist = Geist({
 const bricolage = Bricolage_Grotesque({
   variable: "--font-bricolage",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const devanagari = Noto_Sans_Devanagari({
-  variable: "--font-deva",
-  subsets: ["devanagari"],
   display: "swap",
 });
 
@@ -126,7 +120,7 @@ export default function RootLayout({
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
       </head>
       <body
-        className={`${geist.variable} ${bricolage.variable} ${devanagari.variable} antialiased`}
+        className={`${dmSans.variable} ${bricolage.variable} antialiased`}
       >
         <Providers>{children}</Providers>
       </body>

@@ -132,9 +132,9 @@
   --color-slate: var(--slate);
   --color-slate-ink: var(--slate-ink);
 
-  --font-sans: var(--font-geist), system-ui, sans-serif;
-  --font-display: var(--font-bricolage), var(--font-geist), system-ui, sans-serif;
-  --font-deva: var(--font-deva), var(--font-geist), sans-serif;
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-bricolage), var(--font-dm-sans), system-ui, sans-serif;
+  --font-deva: var(--font-bricolage), sans-serif;
 
   --radius-panel: 20px;
   --radius-ctl: 12px;
@@ -154,7 +154,7 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-geist), system-ui, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
     font-size: 16px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -163,7 +163,7 @@
   }
 
   h1, h2, h3 {
-    font-family: var(--font-bricolage), var(--font-geist), system-ui, sans-serif;
+    font-family: var(--font-bricolage), var(--font-dm-sans), system-ui, sans-serif;
     text-wrap: balance;
   }
 
