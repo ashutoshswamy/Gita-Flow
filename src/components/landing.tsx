@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ArrowRight } from "@phosphor-icons/react";
 import { motion, useMotionValue, useReducedMotion, useSpring, useTransform } from "motion/react";
 import { Logo } from "@/components/brand";
@@ -10,8 +9,6 @@ import { ThemeMenu } from "@/components/theme-menu";
 import { SiteFooter } from "@/components/site-footer";
 import { HowItWorks } from "@/components/how-it-works";
 import { FaqList } from "@/components/faq-list";
-import { TopicStrip } from "@/components/topic-strip";
-import { DRAFT_KEY } from "@/lib/topics";
 
 function SignInLink() {
   return (
@@ -108,15 +105,6 @@ function HeroTablets() {
 const HEADLINE = ["Ask", "what", "Arjuna", "asked."];
 
 export function Landing() {
-  const router = useRouter();
-
-  const pick = (prompt: string) => {
-    try {
-      sessionStorage.setItem(DRAFT_KEY, prompt);
-    } catch {}
-    router.push("/signup");
-  };
-
   return (
     <div className="flex min-h-[100dvh] flex-col">
       <header className="mx-auto flex h-16 w-full max-w-6xl 2xl:max-w-7xl items-center justify-between gap-2 px-4 pt-[env(safe-area-inset-top)] sm:px-8">
@@ -169,11 +157,7 @@ export function Landing() {
         </section>
 
         <section className="mx-auto w-full max-w-6xl 2xl:max-w-7xl px-5 pb-24 pt-8 sm:px-8 lg:pt-0">
-          <h2 className="max-w-[18ch] text-3xl font-bold leading-tight tracking-tight text-ink sm:text-5xl">
-            Start with what weighs on you.
-          </h2>
-          <TopicStrip onPick={pick} />
-          <p className="mt-8 max-w-[62ch] text-sm leading-relaxed text-faint">
+          <p className="max-w-[62ch] text-sm leading-relaxed text-faint">
             Answers are AI-generated reflections inspired by the Gita. They are not religious authority and not a
             substitute for professional advice. Gita Flow is for adults aged 18 and over.
           </p>

@@ -17,7 +17,6 @@ import { sileo } from "sileo";
 import { ThemeMenu } from "@/components/theme-menu";
 import { Logo, LogoMark } from "@/components/brand";
 import { useAuth } from "@/contexts/AuthContext";
-import { TOPICS, DRAFT_KEY } from "@/lib/topics";
 import type { Chat } from "@/lib/db";
 
 type Message = { id: string; role: "user" | "krishna"; text: string };
@@ -46,17 +45,6 @@ export function ChatApp() {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const authHeader = useCallback(async () => ({ Authorization: `Bearer ${await user!.getIdToken()}` }), [user]);
-
-  // Draft carried over from the landing page topics.
-  useEffect(() => {
-    try {
-      const draft = sessionStorage.getItem(DRAFT_KEY);
-      if (draft) {
-        setInput(draft);
-        sessionStorage.removeItem(DRAFT_KEY);
-      }
-    } catch {}
-  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -465,22 +453,6 @@ export function ChatApp() {
                 <p className="mt-4 max-w-[46ch] text-base text-dim">
                   Write it plainly. Krishna answers the way he answered Arjuna.
                 </p>
-                <ul className="mt-8 flex flex-wrap gap-2">
-                  {TOPICS.map((t) => (
-                    <li key={t.id}>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setInput(t.prompt);
-                          textareaRef.current?.focus();
-                        }}
-                        className="min-h-11 rounded-full border border-rule-strong bg-bg px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-text active:scale-[0.98]"
-                      >
-                        {t.title}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
               </motion.div>
             )}
 
