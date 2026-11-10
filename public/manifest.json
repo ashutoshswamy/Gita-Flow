@@ -4,8 +4,8 @@
   "description": "Seek divine wisdom from Lord Krishna through AI. Get personalized spiritual guidance inspired by the Bhagavad Gita.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#171334",
-  "theme_color": "#171334",
+  "background_color": "#15191a",
+  "theme_color": "#15191a",
   "orientation": "portrait-primary",
   "icons": [
     {

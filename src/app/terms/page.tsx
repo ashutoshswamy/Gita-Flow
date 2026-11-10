@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import { LegalLayout, LegalIntro, LegalSection, LegalList, LegalNote } from "@/components/legal";
 
 export const metadata: Metadata = {
-  title: "Terms of Service - Gita Flow",
+  title: "Terms of Service",
   description:
     "Terms of Service for Gita Flow - Divine wisdom from Krishna. Read our terms and conditions for using the spiritual guidance app.",
   openGraph: {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 const SECTIONS = [
   {
     title: "1. Eligibility",
-    content: "You must be at least 16 years old (or have guardian consent) to use this App.",
+    content: "You must be at least 18 years old to use this App. When you sign in you confirm your age and accept these Terms and our Privacy Policy, and we keep a record of that confirmation.",
   },
   {
     title: "2. Services Provided",
@@ -53,9 +53,9 @@ const SECTIONS = [
 
 export default function TermsPage() {
   return (
-    <LegalLayout title="Terms of Service" eyebrow="Last updated October 3, 2025">
+    <LegalLayout title="Terms of Service" updated="November 10, 2026">
       <LegalIntro>
-        Welcome to <strong style={{ color: "var(--ink)" }}>Gita Flow</strong>, an interactive AI
+        Welcome to <strong className="text-ink">Gita Flow</strong>, an interactive AI
         experience inspired by the wisdom of Lord Krishna from the
         Mahabharata. By using this app, you agree to these Terms of Service.
       </LegalIntro>
@@ -63,7 +63,7 @@ export default function TermsPage() {
       {SECTIONS.map((section) => (
         <LegalSection key={section.title} title={section.title}>
           {section.content && (
-            <p className="font-sans text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
+            <p className="max-w-[65ch] text-base leading-relaxed text-dim">
               {section.content}
             </p>
           )}

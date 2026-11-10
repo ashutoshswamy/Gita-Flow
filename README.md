@@ -1,6 +1,6 @@
 # Gita Flow
 
-![Gita Flow](public/og-image.png)
+![Gita Flow](public/og-image.jpg)
 
 A spiritual AI application that allows users to seek wisdom and guidance from Lord Krishna, inspired by the teachings of the Bhagavad Gita. Built with Next.js and powered by Google's Gemini AI.
 

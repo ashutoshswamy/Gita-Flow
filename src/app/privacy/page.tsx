@@ -1,8 +1,9 @@
 import { Metadata } from "next";
+import { ShieldCheck } from "@phosphor-icons/react/dist/ssr";
 import { LegalLayout, LegalIntro, LegalSection, LegalList, LegalNote } from "@/components/legal";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - Gita Flow",
+  title: "Privacy Policy",
   description:
     "Privacy Policy for Gita Flow - How we handle your data. We respect your privacy and don't store personal information.",
   openGraph: {
@@ -16,27 +17,21 @@ export const metadata: Metadata = {
   },
 };
 
-function ShieldIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-    </svg>
-  );
-}
 
 export default function PrivacyPage() {
   return (
-    <LegalLayout title="Privacy Policy" eyebrow="Last updated October 3, 2025" icon={<ShieldIcon />}>
+    <LegalLayout title="Privacy Policy" updated="November 10, 2026" icon={<ShieldCheck size={26} weight="duotone" aria-hidden />}>
       <LegalIntro>
-        At <strong style={{ color: "var(--ink)" }}>Gita Flow</strong>, we value your privacy. This policy
+        At <strong className="text-ink">Gita Flow</strong>, we value your privacy. This policy
         explains how we collect, use, and safeguard your information.
       </LegalIntro>
 
       <LegalSection title="1. Information We Collect">
         <LegalList items={[
-          <><strong style={{ color: "var(--ink)" }}>Basic Data:</strong> Name, email (if you sign in).</>,
-          <><strong style={{ color: "var(--ink)" }}>User Inputs:</strong> Questions you ask Krishna, and the answers given.</>,
-          <><strong style={{ color: "var(--ink)" }}>Usage Data:</strong> Device type, app activity, analytics data.</>,
+          <><strong className="text-ink">Basic Data:</strong> Name, email (if you sign in).</>,
+          <><strong className="text-ink">User Inputs:</strong> Questions you ask Krishna, and the answers given.</>,
+          <><strong className="text-ink">Usage Data:</strong> Device type, app activity, analytics data.</>,
+          <><strong className="text-ink">Consent Record:</strong> When you sign in we store that you confirmed you are 18 or older and accepted our Terms and Privacy Policy, together with the version and the date.</>,
         ]} />
       </LegalSection>
 
@@ -57,7 +52,7 @@ export default function PrivacyPage() {
       </LegalSection>
 
       <LegalSection title="4. Data Security">
-        <p className="font-sans text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
+        <p className="max-w-[65ch] text-base leading-relaxed text-dim">
           We take reasonable measures (encryption, secure servers) to protect your data, though no system is completely secure.
         </p>
       </LegalSection>
@@ -71,13 +66,21 @@ export default function PrivacyPage() {
       </LegalSection>
 
       <LegalSection title="6. Retention">
-        <p className="font-sans text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
+        <p className="max-w-[65ch] text-base leading-relaxed text-dim">
           Data is stored only as long as necessary for the app&apos;s operation or as required by law.
         </p>
       </LegalSection>
 
-      <LegalSection title="7. Changes to Policy" last>
-        <p className="font-sans text-base leading-relaxed" style={{ color: "var(--ink-dim)" }}>
+      <LegalSection title="7. Cookies and Local Storage">
+        <p className="max-w-[65ch] text-base leading-relaxed text-dim">
+          We use essential cookies and browser storage to keep you signed in and to remember your cookie choice.
+          Optional cookies are used only if you choose Accept all. You can change your choice at any time from
+          Cookie settings in the footer.
+        </p>
+      </LegalSection>
+
+      <LegalSection title="8. Changes to Policy" last>
+        <p className="max-w-[65ch] text-base leading-relaxed text-dim">
           We may update this Privacy Policy periodically. Users will be informed of significant changes.
         </p>
       </LegalSection>

@@ -1,33 +1,9 @@
 import { MetadataRoute } from "next";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://gitaflow.ashutoshswamy.in";
-  const lastModified = new Date("2026-09-20");
+const base = "https://gitaflow.ashutoshswamy.in";
 
-  return [
-    {
-      url: baseUrl,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/disclaimer`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified,
-      changeFrequency: "yearly",
-      priority: 0.3,
-    },
-  ];
+// ponytail: lastModified = build time; use per-page dates if content changes unevenly
+export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = new Date();
+  return ["", "/disclaimer", "/privacy", "/terms"].map((p) => ({ url: `${base}${p}`, lastModified }));
 }

@@ -1,0 +1,8 @@
+# Gita Flow
+
+> Free AI app that answers life questions with guidance inspired by the Bhagavad Gita, in Krishna's voice. For adults 18+. Answers are AI-generated reflections, not religious authority or professional advice.
+
+- [Home](https://gitaflow.ashutoshswamy.in/): app and FAQ
+- [Privacy](https://gitaflow.ashutoshswamy.in/privacy)
+- [Terms](https://gitaflow.ashutoshswamy.in/terms)
+- [Disclaimer](https://gitaflow.ashutoshswamy.in/disclaimer)

@@ -1,20 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
-import { AuthProvider } from "@/contexts/AuthContext";
+import { Geist, Bricolage_Grotesque, Noto_Sans_Devanagari } from "next/font/google";
+import jsonLd from "@/lib/json-ld";
+import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
+const geist = Geist({
+  variable: "--font-geist",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  style: ["normal", "italic"],
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
-  variable: "--font-mono",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  display: "swap",
+});
+
+const devanagari = Noto_Sans_Devanagari({
+  variable: "--font-deva",
+  subsets: ["devanagari"],
   display: "swap",
 });
 
@@ -26,21 +30,6 @@ export const metadata: Metadata = {
   },
   description:
     "Seek divine wisdom from Lord Krishna through AI. Get personalized spiritual guidance inspired by the Bhagavad Gita. Ask life questions and receive compassionate answers rooted in ancient wisdom.",
-  keywords: [
-    "Bhagavad Gita",
-    "Krishna wisdom",
-    "spiritual guidance",
-    "AI spirituality",
-    "Hindu philosophy",
-    "life advice",
-    "Gita teachings",
-    "spiritual counseling",
-    "Krishna AI",
-    "Vedic wisdom",
-    "dharma guidance",
-    "meditation advice",
-    "spiritual questions",
-  ],
   authors: [{ name: "Gita Flow Team" }],
   creator: "Gita Flow",
   publisher: "Gita Flow",
@@ -59,7 +48,7 @@ export const metadata: Metadata = {
       "Seek divine wisdom from Lord Krishna through AI. Get personalized spiritual guidance inspired by the Bhagavad Gita.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Gita Flow - Spiritual Wisdom from Krishna",
@@ -71,8 +60,7 @@ export const metadata: Metadata = {
     title: "Gita Flow - AI-Powered Spiritual Wisdom from Bhagavad Gita",
     description:
       "Seek divine wisdom from Lord Krishna through AI. Get personalized spiritual guidance inspired by the Bhagavad Gita.",
-    images: ["/og-image.png"],
-    creator: "@gitaflow",
+    images: ["/og-image.jpg"],
   },
   robots: {
     index: true,
@@ -87,7 +75,8 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: "/favicon.ico" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48" },
       { url: "/favicon-16x16.png", sizes: "16x16", type: "image/png" },
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
       {
@@ -107,12 +96,18 @@ export const metadata: Metadata = {
   },
   manifest: "/manifest.json",
   alternates: {
-    canonical: "https://gitaflow.ashutoshswamy.in",
+    canonical: "/",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#171334",
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#eef1f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#15191a" },
+  ],
 };
 
 export default function RootLayout({
@@ -121,14 +116,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href="https://gitaflow.ashutoshswamy.in" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem("gf-theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`,
+          }}
+        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd()) }} />
       </head>
       <body
-        className={`${dmSans.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${geist.variable} ${bricolage.variable} ${devanagari.variable} antialiased`}
       >
-        <AuthProvider>{children}</AuthProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

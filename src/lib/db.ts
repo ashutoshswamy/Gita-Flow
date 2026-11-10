@@ -1,4 +1,5 @@
 import { neon } from "@neondatabase/serverless";
+import { TERMS_VERSION } from "@/lib/consent";
 
 export const sql = neon(process.env.DATABASE_URL!);
 
@@ -77,4 +78,21 @@ export async function getConversations(userId: string, chatId: number) {
     ORDER BY created_at ASC
   `;
   return rows as unknown as Conversation[];
+}
+
+export async function hasConsent(userId: string) {
+  const rows = await sql`
+    SELECT 1 FROM user_consents
+    WHERE user_id = ${userId} AND terms_version = ${TERMS_VERSION}
+      AND is_adult AND accepted_terms
+  `;
+  return rows.length > 0;
+}
+
+export async function saveConsent(userId: string) {
+  await sql`
+    INSERT INTO user_consents (user_id, terms_version, is_adult, accepted_terms)
+    VALUES (${userId}, ${TERMS_VERSION}, true, true)
+    ON CONFLICT (user_id, terms_version) DO NOTHING
+  `;
 }

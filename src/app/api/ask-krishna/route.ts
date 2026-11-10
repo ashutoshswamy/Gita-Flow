@@ -1,7 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest, NextResponse } from "next/server";
 import { requireUserId } from "@/lib/firebase-admin";
-import { saveConversation, createChat, chatBelongsToUser } from "@/lib/db";
+import { saveConversation, createChat, chatBelongsToUser, hasConsent } from "@/lib/db";
 import { rateLimit } from "@/lib/rate-limit";
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
@@ -38,6 +38,10 @@ export async function POST(request: NextRequest) {
 
     const userId = await requireUserId(request);
     if (!userId) return NextResponse.json({ error: "Sign in to continue" }, { status: 401 });
+
+    if (!(await hasConsent(userId))) {
+      return NextResponse.json({ error: "Please confirm your age and accept the terms to continue" }, { status: 403 });
+    }
 
     let existingChatId: number | null = null;
     if (chatId !== undefined && chatId !== null) {
